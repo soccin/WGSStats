@@ -4,6 +4,13 @@
 
 SDIR="$( cd "$( dirname "$0" )" && pwd )"
 
+if [ "$#" != "1" ]; then
+    echo
+    echo "   usage: WGSStats/doWGSStats.sh PROJECTDIR"
+    echo
+    exit
+fi
+
 PROJECTDIR=$1
 project=$(echo $PROJECTDIR | perl -ne 'm|/(Project_[^/]*)|;print $1')
 echo $project
