@@ -24,8 +24,6 @@ sleep 15
 echo bSync GZIP_$project
 bSync GZIP_$project
 
-bjobs > JOB_LIST_$$
-
 ls -1d $PWD/FASTQ/P*/S* >sampleDIRs_$$
 mappingSheet=${project/Project/Proj}_sample_mapping.txt
 getMappingSheet.sh sampleDIRs_$$ >$mappingSheet

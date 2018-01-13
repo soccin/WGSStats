@@ -16,7 +16,7 @@ echo $read, $samp
 
 ODIR=FASTQ/$project/$samp
 mkdir -p $ODIR
-zcat $file | head -1200000 | split -a 3 -d -l 120000 - $ODIR/${samp/Sample_/}_${read}_
+zcat $file | split -a 3 -d -l 16000000 - $ODIR/${samp/Sample_/}_${read}_
 
 for file in $(find $ODIR -name "*_"$read"_*" | fgrep -v .fastq); do
     echo $file;
