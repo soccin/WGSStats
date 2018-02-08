@@ -3,6 +3,6 @@
 ```
 $ WGSStats/doWGSStats.sh 
 
-   usage: WGSStats/doWGSStats.sh PROJECTDIR
+   usage: WGSStats/doWGSStats.sh [-g GENOME] PROJECTDIR
 
 ```
