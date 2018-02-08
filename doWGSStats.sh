@@ -16,7 +16,7 @@ project=$(echo $PROJECTDIR | perl -ne 'm|/(Project_[^/]*)|;print $1')
 echo $project
 
 
-ls $PROJECTDIR/S*/*gz | xargs -n 1 bsub -n 2 -We 59 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
+ls $PROJECTDIR/S*/*gz | xargs -n 1 bsub -n 2 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
 
 echo
 bSync SPLIT_$$
