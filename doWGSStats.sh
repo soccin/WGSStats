@@ -36,14 +36,14 @@ echo $project
 ls $PROJECTDIR/S*/*gz | xargs -n 1 bsub -n 2 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
 
 echo
-bSync SPLIT_$$
+$SDIR/bin/bSync SPLIT_$$
 sleep 15
 echo bSync GZIP_$project
-bSync GZIP_$project
+$SDIR/bin/bSync GZIP_$project
 
 ls -1d $PWD/FASTQ/P*/S* >sampleDIRs_$$
 mappingSheet=${project/Project/Proj}_sample_mapping.txt
-getMappingSheet.sh sampleDIRs_$$ >$mappingSheet
+$SDIR/bin/getMappingSheet.sh sampleDIRs_$$ >$mappingSheet
 sleep 15
 
 $SDIR/PEMapper/runPEMapperMultiDirectories.sh $GENOME $mappingSheet
