@@ -30,10 +30,9 @@ echo GENOME=$GENOME
 
 PROJECTDIR=$1
 project=$(echo $PROJECTDIR | perl -ne 'm|/(Project_[^/]*)|;print $1')
-echo $project
+echo project=$project
 
-
-ls $PROJECTDIR/S*/*gz | xargs -n 1 bsub -n 2 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
+find $* -type f | fgrep .fastq.gz | xargs -n 1 bsub -We 119 -n 2 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
 
 echo
 $SDIR/bin/bSync SPLIT_$$
@@ -41,7 +40,7 @@ sleep 15
 echo bSync GZIP_$project
 $SDIR/bin/bSync GZIP_$project
 
-ls -1d $PWD/FASTQ/P*/S* >sampleDIRs_$$
+ls -1d $PWD/FASTQ/$project/*/S* | fgrep $project >sampleDIRs_$$
 mappingSheet=${project/Project/Proj}_sample_mapping.txt
 $SDIR/bin/getMappingSheet.sh sampleDIRs_$$ >$mappingSheet
 sleep 15
