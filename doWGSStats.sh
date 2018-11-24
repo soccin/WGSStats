@@ -45,5 +45,5 @@ mappingSheet=${project/Project/Proj}_sample_mapping.txt
 $SDIR/bin/getMappingSheet.sh sampleDIRs_$$ >$mappingSheet
 sleep 15
 
-$SDIR/PEMapper/runPEMapperMultiDirectories.sh $GENOME $mappingSheet
+$SDIR/PEMapper/runPEMapperMultiDirectories.sh $GENOME $mappingSheet | tee log_${project}
 
