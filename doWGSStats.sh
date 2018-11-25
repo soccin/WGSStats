@@ -32,7 +32,7 @@ PROJECTDIR=$1
 project=$(echo $PROJECTDIR | perl -ne 'm|/(Project_[^/]*)|;print $1')
 echo project=$project
 
-find $* -type f | fgrep .fastq.gz | xargs -n 1 bsub -We 119 -n 2 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
+find $* -type f | fgrep .fastq.gz | xargs -n 1 bsub -app anyOS -R "select[type==CentOS7]" -W 119 -n 2 -o LSF/ -J SPLIT_$$ $SDIR/splitFastq.sh
 
 echo
 $SDIR/bin/bSync SPLIT_$$
