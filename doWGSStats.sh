@@ -40,10 +40,12 @@ sleep 15
 echo bSync GZIP_$project
 $SDIR/bin/bSync GZIP_$project
 
+sleep 60
+
 ls -1d $PWD/FASTQ/$project/*/S* | fgrep $project >sampleDIRs_$$
 mappingSheet=${project/Project/Proj}_sample_mapping.txt
 $SDIR/bin/getMappingSheet.sh sampleDIRs_$$ >$mappingSheet
 sleep 15
 
 $SDIR/PEMapper/runPEMapperMultiDirectories.sh $GENOME $mappingSheet | tee log_${project}
-
+#rm sampleDIRs_$$
